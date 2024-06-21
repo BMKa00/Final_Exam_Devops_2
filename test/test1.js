@@ -14,8 +14,20 @@ async function test_case() {
 
     try {
         // Send driver to website
-        await driver.get("http://3.93.40.136");
+        await driver.get("http://3.93.40.136");//IP from testing stage
         }
+
+         // Find the body element and get its background color
+          bodyElement = await driver.findElement(By.id('cell0'));
+
+          //Expectations
+          expectedfigure = 'x';
+
+    if (bodyElement !== expectedfigure) {
+            throw new Error(`figures mismatch,looks weird. Expected: ${expectedfigure}, Actual: ${bodyElement}`);
+        } else {
+            console.log('Background color is as expected.');
+        }     
         
         
     } catch (error) {
