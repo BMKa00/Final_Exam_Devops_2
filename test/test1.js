@@ -36,7 +36,7 @@ async function test_case() {
         await driver.quit();
     }
 
-}
+
 
 test_case();
 
