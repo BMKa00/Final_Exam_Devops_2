@@ -35,12 +35,30 @@ pipeline {
              }
         } 
         stage('Deploy to Staging') {
+            
+             when{
+               expression {
+                 // Read the test result from the file id true continue
+                def testResult = readFile(env.TEST_RESULT_FILE).trim()
+                return testResult == 'true'
+                }           
+             }
+
             steps {
                 sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@44.201.3.182 "sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/BMKa00/Final_Exam_Devops_2 /var/www/html"'
             }
         }
         
         stage('Deploy to Production_Env1') {
+            
+            when{
+               expression {
+                 // Read the test result from the file id true continue
+                def testResult = readFile(env.TEST_RESULT_FILE).trim()
+                return testResult == 'true'
+                }           
+             }
+            
             steps {
                 sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@54.80.13.101 "sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/BMKa00/Final_Exam_Devops_2 /var/www/html"'
             }
