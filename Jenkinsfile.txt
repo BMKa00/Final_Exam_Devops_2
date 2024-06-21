@@ -6,23 +6,23 @@ pipeline{
     stages{ 
         stage('Deploy to Testing'){
             steps{
-            sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@44.197.176.212 " sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/BMKa00/Exam /var/www/html"'
+            sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@3.93.40.136 " sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/BMKa00/Final_Exam_Devops_2 /var/www/html"'
             }
             
         }
         stage('Deploy to Staging'){
             steps{
-            sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@34.200.214.2 " sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/BMKa00/Exam /var/www/html"'
+            sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@44.201.3.182 " sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/BMKa00/Final_Exam_Devops_2 /var/www/html"'
             }
         }
         stage('Deploy to Production_Env1'){
             steps{
-            sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@54.211.245.127 " sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/BMKa00/Exam /var/www/html"'
+            sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@54.80.13.101 " sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/BMKa00/Final_Exam_Devops_2 /var/www/html"'
             }
         }
         stage('Deploy to Production_Env2'){
             steps{
-            sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@3.239.222.199 " sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/BMKa00/Exam /var/www/html"'
+            sh 'ssh -T -oStrictHostKeyChecking=no -i "$TOKENAWS" ec2-user@44.197.218.208 " sudo dnf update; sudo dnf install git -y; sudo dnf install -y httpd; sudo systemctl start httpd; sudo rm -Rf /var/www/html/; sudo git clone https://github.com/BMKa00/Final_Exam_Devops_2 /var/www/html"'
             }
         }
      
