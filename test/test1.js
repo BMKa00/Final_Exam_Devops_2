@@ -1,8 +1,7 @@
-const { By, Key, Builder } = require("selenium-webdriver");
+const { By, Builder } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 
 async function test_case() {
-
     // Set Chrome options
     let options = new chrome.Options();
     options.addArguments('headless');
@@ -14,29 +13,31 @@ async function test_case() {
 
     try {
         // Send driver to website
-        await driver.get("http://3.93.40.136");//IP from testing stage
-        }
+        await driver.get("http://3.93.40.136"); // IP from testing stage
 
-         // Find the body element and get its background color
-          bodyElement = await driver.findElement(By.id('cell0'));
+        // Find the element
+        let bodyElement = await driver.findElement(By.id('cell0'));
+        
+        // Get the text content of the element
+        let actualFigure = await bodyElement.getText();
 
-          //Expectations
-          expectedfigure = 'x';
+        // Expectations
+        let expectedFigure = 'x';
 
-    if (bodyElement !== expectedfigure) {
-            throw new Error(`figures mismatch,looks weird. Expected: ${expectedfigure}, Actual: ${bodyElement}`);
+        // Assertion
+        if (actualFigure !== expectedFigure) {
+            throw new Error(`Figures mismatch. Expected: ${expectedFigure}, Actual: ${actualFigure}`);
         } else {
-            console.log('Background color is as expected.');
+            console.log('Figure is as expected.');
         }     
-        
-        
+
     } catch (error) {
         console.log('Test Failed because:', error);
     } finally {
         await driver.quit();
     }
-
-
+}
 
 test_case();
+
 
